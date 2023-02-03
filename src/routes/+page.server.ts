@@ -3,7 +3,7 @@ import type { PageServerLoad } from "./$types";
 
 
 export const load: PageServerLoad = (()=> {
-const tracks = getInitialTracks(10);
+const tracks = getInitialTracks(50);
 
 return {
     tracks
