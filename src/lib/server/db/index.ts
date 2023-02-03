@@ -1,11 +1,12 @@
 import Database from 'better-sqlite3'
-import DB_PATH from '$env/static/private';
+import {DB_PATH} from '$env/static/private';
 import type { Track } from './types'
 
-const db = new Database(`${DB_PATH}`, {verbose: console.log})
+const db = new Database( DB_PATH, {verbose: console.log})
 
 export function getInitialTracks(limit = 50): Track[]{
-    const sql =`Select t.TrackId as TrackId
+    const sql = `
+    select t.TrackId as trackId
     , t.Name as trackName
     , a.AlbumId as albumId
     , a.Title as albumTitle
