@@ -24,4 +24,17 @@
         {/each}
     </tbody>
 </table>
+
+<h2 class="is-size-3 mb-4 mt-6">Update Album Title</h2>
+<form method ="POST">
+    <input 
+        type="text"
+        class="input"
+        name="albumTitle"
+        value={data.album.albumTitle}
+        style="max-width: 50ch;"
+        />
+<input type="hidden" name="albumId" value={data.album.albumId} >
+        <button class="button is-primary" type="submit" formaction="?/updateAlbumTitle">Update Album Title</button>
+</form>
 </div>

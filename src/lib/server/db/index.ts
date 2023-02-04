@@ -57,3 +57,15 @@ export function getAlbumTracks(albumId:number): AlbumTrack[] {
     const rows = stmnt.all({albumId});
     return rows as AlbumTrack[];
 };
+
+//update album title in database
+export function updateAlbumTitle(albumId: number, albumTitle: string): void {
+    const sql = `
+    update albums
+    set Title = $albumTitle
+    where AlbumId = $albumId
+    `;
+
+    const stmnt = db.prepare(sql);
+    stmnt.run({albumId, albumTitle})
+}
