@@ -35,7 +35,7 @@ export function getAlbumById(albumId:number): Album {
         , at.ArtistId as artistId
         , at.Name as artistName
     from albums a
-    join artists at on a.AlbumId = at.ArtistId
+    join artists at on a.ArtistId = at.ArtistId
     where a.AlbumId = $albumId
     `;
     const stmnt = db.prepare(sql);
