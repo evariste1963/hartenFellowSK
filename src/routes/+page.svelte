@@ -19,7 +19,7 @@ export let data: PageData
         <tr>
         <td>{track.trackName}</td>
         <td>{track.artistName}</td>
-        <td>{track.albumTitle}</td>
+        <td><a href= {`/album/${track.albumId}`}> {track.albumTitle}</a> </td>
         <td>{track.genre}</td>
     </tr>
         {/each}
