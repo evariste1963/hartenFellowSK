@@ -27,6 +27,31 @@ export function getInitialTracks(limit = 50): Track[]{
     return rows as Track[];
 }
 
+//search tracks
+export function searchTracks(searchTerm: string, limit = 50): Track[]{
+    const sql = `
+    select t.TrackId as trackId
+    , t.Name as trackName
+    , a.AlbumId as albumId
+    , a.Title as albumTitle
+    , at.ArtistId as artistId
+    , at.Name as artistName
+    , g.Name as genre
+    from tracks t 
+    join albums a 
+    on t.AlbumId = a.AlbumId
+    join artists at 
+    on a.ArtistId = at.ArtistId
+    join genres g 
+    on t.GenreId = g.GenreId
+    where lower(t.Name) like lower('%' || $searchTerm || '%')
+    limit $limit
+    `;
+    const stmnt = db.prepare(sql);
+    const rows = stmnt.all({searchTerm, limit});
+    return rows as Track[];
+}
+
 //Album data query
 export function getAlbumById(albumId:number): Album {
     const sql = `
