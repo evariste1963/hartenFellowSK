@@ -1,4 +1,4 @@
-export type Track = {
+export type Tracks = {
     trackId: number;
     trackName: string;
     albumId: number;
