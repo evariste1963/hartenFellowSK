@@ -22,10 +22,12 @@
 				<tr>
 					<td>{i + 1}</td>
 					<td>{track.trackName}</td>
-					<td class="has-text-centered"
-						>{('' + Math.floor((track.trackMs / 1000 / 60) << 0)).padStart(2, '0')}:{(
-							'' + Math.floor((track.trackMs / 1000) % 60)
-						).padStart(2, '0')}
+					<td class="has-text-centered">
+						{Math.floor((track.trackMs / 1000 / 60) << 0)
+							.toString()
+							.padStart(2, '0')}:{Math.floor((track.trackMs / 1000) % 60)
+							.toString()
+							.padStart(2, '0')}
 					</td>
 				</tr>
 			{/each}
