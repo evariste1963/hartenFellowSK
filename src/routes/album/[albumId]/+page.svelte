@@ -7,7 +7,6 @@
 	<h1 class="is-size-1">{data.album.albumTitle}</h1>
 	<div style="display:flex">
 		<p class="is-size-4 mr-6">By {data.album.artistName}</p>
-		<a class="button is-primary" href="/">Home</a>
 	</div>
 	<table class="table mt-6">
 		<thead>

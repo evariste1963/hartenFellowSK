@@ -95,3 +95,11 @@ export function updateAlbumTitle(albumId: number, albumTitle: string): void {
     const stmnt = db.prepare(sql);
     stmnt.run({albumId, albumTitle})
 }
+
+export function createUser(username: string, password: string): void {
+    const sql = `
+    insert into users (username, password, roles)
+    values ($username, $password, 'admin:moderator)`;
+    const stmnt = db.prepare(sql);
+    stmnt.run({ username, password})
+}
