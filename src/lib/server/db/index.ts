@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3'
 import {DB_PATH} from '$env/static/private';
 import type { Album, AlbumTrack, Tracks } from './types'
-const resultLimit = 50
+const resultLimit = 200
 
 const db = new Database( DB_PATH )
 
