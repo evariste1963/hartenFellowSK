@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	export let data: PageData;
+
+	console.log(data);
 </script>
 
 <div class="px-4">
@@ -22,7 +24,11 @@
 				<tr>
 					<td>{i + 1}</td>
 					<td>{track.trackName}</td>
-					<td>{Math.floor(track.trackMs / 1000)} s</td>
+					<td
+						>{('' + Math.floor((track.trackMs / 1000 / 60) << 0)).padStart(2, '0')}:{(
+							'' + Math.floor((track.trackMs / 1000) % 60)
+						).padStart(2, '0')}
+					</td>
 				</tr>
 			{/each}
 		</tbody>
