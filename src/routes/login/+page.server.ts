@@ -1,3 +1,4 @@
+import { createUser } from '$lib/server/db';
 import { fail, type Actions } from '@sveltejs/kit';
 
 
@@ -8,7 +9,7 @@ export const actions: Actions = {
         const password = data.get('password')?.toString();
 
         if(username && password) {
-null
+            createUser(username, password)
         } else{
             return fail(400, {errorMessage: 'Missing username or Password'})
         }
