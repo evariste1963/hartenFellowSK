@@ -119,6 +119,21 @@ export async function checkUserCredentials(username: string, password: string): 
     if (row){
         return bcrypt.compare(password, row.password)
     } else {
-    return false
+        await bcrypt.hash(password, 10) // only used to delay response for securty reasons
+        return false
     }
+}
+
+export function getUserRoles(username: string): string[] {
+    const sql = `
+    select roles
+        from users
+    where username = $username
+    `;
+    const stmnt = db.prepare(sql);
+    const row = stmnt.get({ username });
+    if (row) {
+        return row.roles.split(':')
+    }
+    return []
 }
