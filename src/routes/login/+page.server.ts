@@ -1,6 +1,6 @@
 import { checkUserCredentials, createUser } from '$lib/server/db';
 import { createSession } from '$lib/server/sessionStore';
-import { fail, type Actions, type Cookies } from '@sveltejs/kit';
+import { fail, redirect, type Actions, type Cookies } from '@sveltejs/kit';
 
 
 function performLogin(cookies: Cookies, username: string) {
@@ -35,6 +35,7 @@ export const actions: Actions = {
           }
 
           performLogin(cookies, username)
+          throw redirect(303, '/')
         } else {
             return fail(400, {errorMessage: 'Missing username or Password'})
         }

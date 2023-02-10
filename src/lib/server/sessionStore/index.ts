@@ -47,3 +47,17 @@ export function createSession(username: string, maxAge: number): string {
     }
     return sid;
 }
+
+export function getSession(sid: Sid): SessionInfo | undefined {
+    const session = sessionStore.get(sid);
+    if (session) {
+        if(Date.now() > session.invalidAt) {
+            sessionStore.delete(sid);
+            return undefined;
+        } else {
+            return session
+        }
+    } else {
+        return undefined
+    }
+}
