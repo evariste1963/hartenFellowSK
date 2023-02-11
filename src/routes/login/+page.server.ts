@@ -18,6 +18,7 @@ export const actions: Actions = {
         if(username && password) {
             createUser(username, password)
             performLogin(cookies, username)
+            throw redirect(303, '/')
         } else{
             return fail(400, {errorMessage: 'Missing username or Password'})
         }
