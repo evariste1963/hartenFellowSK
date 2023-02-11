@@ -3,7 +3,7 @@ import { error, type Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
 
-export const load: PageServerLoad = (({params})=> {
+export const load: PageServerLoad = (({params, locals})=> {
     const albumId = parseInt(params.albumId);
 
     if(!albumId){
@@ -19,13 +19,17 @@ export const load: PageServerLoad = (({params})=> {
     
     return {
         album,
-        tracks
+        tracks,
+        isAdmin: locals?.roles?.includes('admin')
     }
     }) 
 
     //update albumm title action
     export const actions: Actions = {
-        updateAlbumTitle : async ({ request }) => {
+        updateAlbumTitle : async ({ request, locals }) => {
+            if (!locals.username || !locals?.roles?.includes('admin')) {
+                throw error(401, {message: 'you are not authorised to update Album names'})
+            }
         const data = await request.formData();
         const albumIdStr = data.get('albumId')?.toString();
         const albumId = albumIdStr ? parseInt(albumIdStr) : null;
